@@ -1,0 +1,35 @@
+networks:
+  march1_network:
+    external: true
+
+volumes:
+  postgres_data:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:3003"
+    environment:
+      - NODE_ENV=production
+    container_name: march1-events-api
+    restart: unless-stopped
+    env_file: ".env"
+    networks:
+      - march1_network
+
+  db:
+    image: postgres:latest
+    container_name: march1-events-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:5433"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - march1_network
