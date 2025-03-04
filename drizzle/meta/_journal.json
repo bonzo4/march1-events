@@ -15,6 +15,27 @@
       "when": 1740887326689,
       "tag": "0001_white_phalanx",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1741054582464,
+      "tag": "0002_dashing_next_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1741054950553,
+      "tag": "0003_small_alex_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1741055043767,
+      "tag": "0004_giant_turbo",
+      "breakpoints": true
     }
   ]
 }

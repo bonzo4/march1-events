@@ -29,8 +29,4 @@ export const eventUserRelations = relations(eventUsers, ({ one }) => ({
     fields: [eventUsers.eventId],
     references: [events.id],
   }),
-  user: one(users, {
-    fields: [eventUsers.userId],
-    references: [users.id],
-  }),
 }));

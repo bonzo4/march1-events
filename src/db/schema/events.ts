@@ -8,13 +8,19 @@ import {
   timestamp,
 } from "drizzle-orm/pg-core";
 import { eventUsers } from "./eventUsers";
+import { eventLocations } from "./eventLocations";
+import { eventComments } from "./eventComments";
 
 export const eventType = pgEnum("event_type", ["online", "live"]);
 
 export const events = pgTable("events", {
   id: serial("id").primaryKey(),
-  createdAt: timestamp("created_at").default(new Date()).notNull(),
-  updatedAt: timestamp("updated_at").default(new Date()).notNull(),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
   createdBy: text("created_by").notNull(),
   name: text("name").notNull(),
   description: text("description").notNull(),
@@ -26,4 +32,6 @@ export const events = pgTable("events", {
 
 export const eventsRelation = relations(events, ({ many }) => ({
   eventUsers: many(eventUsers),
+  eventLocations: many(eventLocations),
+  eventComments: many(eventComments),
 }));
