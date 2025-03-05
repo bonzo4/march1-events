@@ -16,12 +16,9 @@ export const eventLocations = pgTable("event_locations", {
       onDelete: "cascade",
     })
     .notNull(),
-  createdAt: timestamp("created_at")
-    .$defaultFn(() => new Date())
-    .notNull(),
-  updatedAt: timestamp("updated_at")
-    .$defaultFn(() => new Date())
-    .notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at"),
+  deletedAt: timestamp("deleted_at"),
   state: text("state").notNull(),
   city: text("city").notNull(),
   address: text("address").notNull(),

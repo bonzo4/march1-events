@@ -18,8 +18,9 @@ export const eventUsers = pgTable(
         onDelete: "cascade",
       }),
     userId: text("user_id").notNull(),
-    createdAt: timestamp("created_at").default(new Date()).notNull(),
-    updatedAt: timestamp("updated_at").default(new Date()).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at"),
+    deletedAt: timestamp("deleted_at"),
   },
   (t) => [primaryKey({ columns: [t.eventId, t.userId] })]
 );

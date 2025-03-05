@@ -15,12 +15,9 @@ export const eventType = pgEnum("event_type", ["online", "live"]);
 
 export const events = pgTable("events", {
   id: serial("id").primaryKey(),
-  createdAt: timestamp("created_at")
-    .$defaultFn(() => new Date())
-    .notNull(),
-  updatedAt: timestamp("updated_at")
-    .$defaultFn(() => new Date())
-    .notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at"),
+  deletedAt: timestamp("deleted_at"),
   createdBy: text("created_by").notNull(),
   name: text("name").notNull(),
   description: text("description").notNull(),
